@@ -3,11 +3,11 @@ package org.firstinspires.ftc.teamcode;
 
 import static org.firstinspires.ftc.teamcode.Hardware.frontLeftH;
 import static org.firstinspires.ftc.teamcode.Hardware.frontRightH;
-import static org.firstinspires.ftc.teamcode.Hardware.rearLeftH;
-import static org.firstinspires.ftc.teamcode.Hardware.rearRightH;
+import static org.firstinspires.ftc.teamcode.Hardware.backLeftH;
+import static org.firstinspires.ftc.teamcode.Hardware.backRightH;
 
 public class DriveTrain {
-    public static double x,y,rx,denominator, frontLeftD,frontRightD,rearLeftD, rearRightD; //declaram axe, denominator si roti individuale
+    double x,y,rx,denominator, frontLeftD,frontRightD, backLeftD, backRightD; //declaram axe, denominator si roti individuale
 
     public void drive(double a, double b, double c){
         x = a;                                          // miscare stanga-dreapta
@@ -16,11 +16,11 @@ public class DriveTrain {
         denominator = Math.max(Math.abs(y)+Math.abs(x)+Math.abs(rx),1);
         frontLeftD   = (y + x + rx) / denominator;		//calculare roata fata stanga
         frontRightD  = (y - x - rx) / denominator;		//calculare roata fata dreapta
-        rearLeftD    = (y - x + rx) / denominator;		//calculare roata spate stanga
-        rearRightD   = (y + x - rx) / denominator;		//calculare roata spate dreapta
-        frontLeftH.setPower(frontLeftD);
-        rearLeftH.setPower(rearLeftD);
+        backLeftD    = (y - x + rx) / denominator;		//calculare roata spate stanga
+        backRightD = (y + x - rx) / denominator;		//calculare roata spate dreapta
+        frontLeftH.setPower(frontLeftD);                //de la inputul controllerului duce putere la fiecare motor
+        backLeftH.setPower(backLeftD);
         frontRightH.setPower(frontRightD);
-        rearRightH.setPower(rearRightD);
+        backRightH.setPower(backRightD);
     }
 }
